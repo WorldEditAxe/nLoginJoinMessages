@@ -10,13 +10,15 @@ import org.bukkit.event.player.PlayerQuitEvent;
 public class EventListener implements Listener {
     @EventHandler
     public void onJoin(PlayerJoinEvent event) {
-        NLoginJoinMessages.JOIN_MESSAGE_CACHE.set(event.getPlayer(), event.getJoinMessage() == null ? ChatColor.YELLOW + event.getPlayer().getDisplayName() + " joined the game" : event.getJoinMessage());
+        NLoginJoinMessages.JOIN_MESSAGE_CACHE.set(event.getPlayer(), event.getJoinMessage());
         event.setJoinMessage(null);
     }
 
     @EventHandler
     public void onSuccessfulLogin(LoginEvent event) {
-        event.getPlayer().getServer().broadcastMessage(NLoginJoinMessages.JOIN_MESSAGE_CACHE.get(event.getPlayer()));
+        String msg = NLoginJoinMessages.JOIN_MESSAGE_CACHE.get(event.getPlayer());
+        if (msg != null)
+            event.getPlayer().getServer().broadcastMessage(msg);
         NLoginJoinMessages.JOIN_MESSAGE_CACHE.remove(event.getPlayer());
     }
 
