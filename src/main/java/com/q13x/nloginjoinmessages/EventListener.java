@@ -3,12 +3,13 @@ package com.q13x.nloginjoinmessages;
 import com.nickuc.login.api.event.bukkit.auth.LoginEvent;
 import org.bukkit.ChatColor;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
 public class EventListener implements Listener {
-    @EventHandler
+    @EventHandler(priority = EventPriority.HIGHEST)
     public void onJoin(PlayerJoinEvent event) {
         NLoginJoinMessages.JOIN_MESSAGE_CACHE.set(event.getPlayer(), event.getJoinMessage());
         event.setJoinMessage(null);
