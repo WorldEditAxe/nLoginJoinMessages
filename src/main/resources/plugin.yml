@@ -1,0 +1,4 @@
+name: nLoginJoinMessages
+version: '${project.version}'
+main: com.q13x.nloginjoinmessages.NLoginJoinMessages
+api-version: 1.8
